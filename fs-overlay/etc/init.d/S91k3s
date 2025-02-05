@@ -1,0 +1,39 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          k3s
+# Required-Start:    S40userdata
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      
+# Short-Description: Start K3s at boot
+### END INIT INFO
+
+K3S_BIN="/usr/bin/k3s"
+K3S_ARGS="agent"
+
+case "$1" in
+    start)
+        echo "Ensuring /userdata/var/lib/rancher/k3s exists..."
+        mkdir -p /userdata/var/lib/rancher/k3s
+        chmod 755 /userdata/var/lib/rancher/k3s
+        mount --bind /userdata/var/lib/rancher/k3s /var/lib/rancher/k3s
+	
+	echo "Starting K3s..."
+        $K3S_BIN $K3S_ARGS &
+        ;;
+    stop)
+        echo "Stopping K3s..."
+        killall k3s
+        ;;
+    restart)
+        $0 stop
+        sleep 2
+        $0 start
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+exit 0
+

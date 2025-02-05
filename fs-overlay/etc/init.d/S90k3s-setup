@@ -1,0 +1,17 @@
+#!/bin/sh
+
+case "$1" in
+  start)
+    echo "Setting up K3s containerd symlink..."
+    ln -sf /userdata/containerd /var/lib/rancher/k3s/agent/containerd
+    ;;
+  stop)
+    ;;
+  restart|reload)
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit 0

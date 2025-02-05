@@ -1,0 +1,22 @@
+#!/bin/sh
+# DHCP client daemon startup script disabled by default
+# To enable manually: dhcpcd eth0
+
+case "$1" in
+  start)
+    # Disabled on startup
+    exit 0
+    ;;
+  stop)
+    /sbin/start-stop-daemon --stop --quiet --pidfile /var/run/dhcpcd.pid
+    ;;
+  restart|reload)
+    "$0" stop
+    "$0" start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit $?

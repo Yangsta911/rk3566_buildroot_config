@@ -1,0 +1,2 @@
+# Cgroup v2 mount
+cgroup2    /sys/fs/cgroup    cgroup2    defaults    0    0
