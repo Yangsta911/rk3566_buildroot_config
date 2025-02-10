@@ -1,2 +1,6 @@
 server: https://192.168.1.170:6443
-token: K10db89e949adfecda695e6dbb4f11ab70fd75bbdc60a2339b4f29927826664a300::server:06b3b82dd3a85dd057c21fec5db2be9e 
+token: K10db89e949adfecda695e6dbb4f11ab70fd75bbdc60a2339b4f29927826664a300::server:06b3b82dd3a85dd057c21fec5db2be9e
+node-name: edgex.100.169
+node-label:
+  - environment=edgex-device
+  - group.ac4: "true"
